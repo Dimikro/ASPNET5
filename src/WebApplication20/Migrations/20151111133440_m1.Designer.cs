@@ -8,8 +8,8 @@ using WebApplication20.Models;
 namespace WebApplication20.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20151110215827_MasterSlaveAdded")]
-    partial class MasterSlaveAdded
+    [Migration("20151111133440_m1")]
+    partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -154,6 +154,28 @@ namespace WebApplication20.Migrations
                     b.HasKey("Id");
                 });
 
+            modelBuilder.Entity("WebApplication20.Models.MasterToRole", b =>
+                {
+                    b.Property<string>("RoleId");
+
+                    b.Property<int>("MasterID");
+
+                    b.HasKey("RoleId", "MasterID");
+                });
+
+            modelBuilder.Entity("WebApplication20.Models.Role", b =>
+                {
+                    b.Property<string>("Id");
+
+                    b.Property<string>("ConcurrencyStamp");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("NormalizedName");
+
+                    b.HasKey("Id");
+                });
+
             modelBuilder.Entity("WebApplication20.Models.SlaveEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -196,6 +218,17 @@ namespace WebApplication20.Migrations
                     b.HasOne("WebApplication20.Models.ApplicationUser")
                         .WithMany()
                         .ForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("WebApplication20.Models.MasterToRole", b =>
+                {
+                    b.HasOne("WebApplication20.Models.MasterEntity")
+                        .WithMany()
+                        .ForeignKey("MasterID");
+
+                    b.HasOne("WebApplication20.Models.Role")
+                        .WithMany()
+                        .ForeignKey("RoleId");
                 });
 
             modelBuilder.Entity("WebApplication20.Models.SlaveEntity", b =>

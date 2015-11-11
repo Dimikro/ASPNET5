@@ -13,7 +13,7 @@ namespace WebApplication20.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Annotation("ProductVersion", "7.0.0-beta8-15964")
+                .Annotation("ProductVersion", "7.0.0-beta8")
                 .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
@@ -143,28 +143,6 @@ namespace WebApplication20.Migrations
                     b.Annotation("Relational:TableName", "AspNetUsers");
                 });
 
-            modelBuilder.Entity("WebApplication20.Models.MasterEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-                });
-
-            modelBuilder.Entity("WebApplication20.Models.SlaveEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("MasterId");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-                });
-
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNet.Identity.EntityFramework.IdentityRole")
@@ -195,13 +173,6 @@ namespace WebApplication20.Migrations
                     b.HasOne("WebApplication20.Models.ApplicationUser")
                         .WithMany()
                         .ForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("WebApplication20.Models.SlaveEntity", b =>
-                {
-                    b.HasOne("WebApplication20.Models.MasterEntity")
-                        .WithMany()
-                        .ForeignKey("MasterId");
                 });
         }
     }

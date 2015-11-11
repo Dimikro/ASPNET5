@@ -153,6 +153,28 @@ namespace WebApplication20.Migrations
                     b.HasKey("Id");
                 });
 
+            modelBuilder.Entity("WebApplication20.Models.MasterToRole", b =>
+                {
+                    b.Property<string>("RoleId");
+
+                    b.Property<int>("MasterID");
+
+                    b.HasKey("RoleId", "MasterID");
+                });
+
+            modelBuilder.Entity("WebApplication20.Models.Role", b =>
+                {
+                    b.Property<string>("Id");
+
+                    b.Property<string>("ConcurrencyStamp");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("NormalizedName");
+
+                    b.HasKey("Id");
+                });
+
             modelBuilder.Entity("WebApplication20.Models.SlaveEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -195,6 +217,17 @@ namespace WebApplication20.Migrations
                     b.HasOne("WebApplication20.Models.ApplicationUser")
                         .WithMany()
                         .ForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("WebApplication20.Models.MasterToRole", b =>
+                {
+                    b.HasOne("WebApplication20.Models.MasterEntity")
+                        .WithMany()
+                        .ForeignKey("MasterID");
+
+                    b.HasOne("WebApplication20.Models.Role")
+                        .WithMany()
+                        .ForeignKey("RoleId");
                 });
 
             modelBuilder.Entity("WebApplication20.Models.SlaveEntity", b =>

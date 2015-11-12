@@ -8,9 +8,10 @@ using WebApplication20.Models;
 namespace WebApplication20.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20151111145944_m2")]
+    partial class m2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .Annotation("ProductVersion", "7.0.0-beta8-15964")
@@ -177,11 +178,26 @@ namespace WebApplication20.Migrations
 
             modelBuilder.Entity("WebApplication20.Models.MasterToRole", b =>
                 {
-                    b.Property<string>("IdentityRoleId");
+                    b.Property<string>("RoleId");
 
                     b.Property<int>("MasterID");
 
-                    b.HasKey("IdentityRoleId", "MasterID");
+                    b.Property<string>("IdentityRoleId");
+
+                    b.HasKey("RoleId", "MasterID");
+                });
+
+            modelBuilder.Entity("WebApplication20.Models.Role", b =>
+                {
+                    b.Property<string>("Id");
+
+                    b.Property<string>("ConcurrencyStamp");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("NormalizedName");
+
+                    b.HasKey("Id");
                 });
 
             modelBuilder.Entity("WebApplication20.Models.SlaveEntity", b =>
@@ -244,6 +260,10 @@ namespace WebApplication20.Migrations
                     b.HasOne("WebApplication20.Models.MasterEntity")
                         .WithMany()
                         .ForeignKey("MasterID");
+
+                    b.HasOne("WebApplication20.Models.Role")
+                        .WithMany()
+                        .ForeignKey("RoleId");
                 });
 
             modelBuilder.Entity("WebApplication20.Models.SlaveEntity", b =>

@@ -15,13 +15,43 @@ namespace WebApplication20.Models
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);            
+
+            
             var b = builder.Entity<SlaveEntity>();
             b.HasKey(t => t.Id);
             b.HasOne(t => t.Master);
             var c = builder.Entity<MasterEntity>();
             c.HasKey(t => t.Id);
             c.HasMany(t => t.Slaves).WithOne(t=>t.Master).ForeignKey(t=>t.MasterId);
+            c.HasMany(t => t.MasterToRoles).WithOne(t=>t.Master).ForeignKey(t=>t.MasterID);
+            var d = builder.Entity<MasterToRole>();            
+            d.HasKey(t => new { t.IdentityRoleId, t.MasterID });
+            d.HasOne(t => t.Role).WithMany();
+            var e = builder.Entity<LookUpValue>();
+            e.HasKey(t => t.Id);
+            var f = builder.Entity<LookUp>();
+            f.HasKey(t => t.Id);
+            f.HasMany(t => t.LookUpValues).WithOne(t => t.LookUp).ForeignKey(t => t.LookUpId);
+
+            //var r = builder.Entity<IdentityRole>();
+            //r.HasMany(typeof(MasterToRole)).WithOne();
         }
+    }
+
+
+    public class LookUp
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public virtual ICollection<LookUpValue> LookUpValues { get; set; }
+    }
+
+    public class LookUpValue
+    {
+        public int Id { get; set; }
+        public int LookUpId { get; set; }
+        public virtual LookUp LookUp { get; set; }
+        public string Value { get; set; }
     }
 
     public class SlaveEntity
@@ -32,10 +62,22 @@ namespace WebApplication20.Models
         public virtual MasterEntity Master { get; set; }
     }
 
+    public class MasterToRole
+    {
+        public string IdentityRoleId { get; set; }
+
+        public virtual IdentityRole Role { get; set; }
+
+        public int MasterID { get; set; }
+
+        public virtual MasterEntity Master { get; set; }
+    }
+   
     public class MasterEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public virtual ICollection<SlaveEntity> Slaves { get; set; }
+        public virtual ICollection<MasterToRole> MasterToRoles { get; set; }
     }
 }

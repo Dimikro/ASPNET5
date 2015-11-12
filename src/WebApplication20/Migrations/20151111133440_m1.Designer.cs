@@ -8,9 +8,10 @@ using WebApplication20.Models;
 namespace WebApplication20.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20151111133440_m1")]
+    partial class m1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .Annotation("ProductVersion", "7.0.0-beta8-15964")
@@ -143,28 +144,6 @@ namespace WebApplication20.Migrations
                     b.Annotation("Relational:TableName", "AspNetUsers");
                 });
 
-            modelBuilder.Entity("WebApplication20.Models.LookUp", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-                });
-
-            modelBuilder.Entity("WebApplication20.Models.LookUpValue", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("LookUpId");
-
-                    b.Property<string>("Value");
-
-                    b.HasKey("Id");
-                });
-
             modelBuilder.Entity("WebApplication20.Models.MasterEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -177,11 +156,24 @@ namespace WebApplication20.Migrations
 
             modelBuilder.Entity("WebApplication20.Models.MasterToRole", b =>
                 {
-                    b.Property<string>("IdentityRoleId");
+                    b.Property<string>("RoleId");
 
                     b.Property<int>("MasterID");
 
-                    b.HasKey("IdentityRoleId", "MasterID");
+                    b.HasKey("RoleId", "MasterID");
+                });
+
+            modelBuilder.Entity("WebApplication20.Models.Role", b =>
+                {
+                    b.Property<string>("Id");
+
+                    b.Property<string>("ConcurrencyStamp");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("NormalizedName");
+
+                    b.HasKey("Id");
                 });
 
             modelBuilder.Entity("WebApplication20.Models.SlaveEntity", b =>
@@ -228,22 +220,15 @@ namespace WebApplication20.Migrations
                         .ForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("WebApplication20.Models.LookUpValue", b =>
-                {
-                    b.HasOne("WebApplication20.Models.LookUp")
-                        .WithMany()
-                        .ForeignKey("LookUpId");
-                });
-
             modelBuilder.Entity("WebApplication20.Models.MasterToRole", b =>
                 {
-                    b.HasOne("Microsoft.AspNet.Identity.EntityFramework.IdentityRole")
-                        .WithMany()
-                        .ForeignKey("IdentityRoleId");
-
                     b.HasOne("WebApplication20.Models.MasterEntity")
                         .WithMany()
                         .ForeignKey("MasterID");
+
+                    b.HasOne("WebApplication20.Models.Role")
+                        .WithMany()
+                        .ForeignKey("RoleId");
                 });
 
             modelBuilder.Entity("WebApplication20.Models.SlaveEntity", b =>

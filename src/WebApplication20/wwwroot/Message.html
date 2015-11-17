@@ -9,11 +9,15 @@
     <link type="text/css" rel="stylesheet" href="css/site.min.css" />
 </head>
 <body ng-app="MyApp">
-    <div ng-controller="MyController">
-        <textarea class="text-muted">
-            {{test}}
-        </textarea>
-        <button class="btn btn-success" ng-click="Create();">Create</button>
+    <div ng-controller="MyController" class="panel panel-info col-sm-5">
+        <div class="panel-body">
+            <textarea class="text-muted form-control">
+                {{test}}
+            </textarea>
+        </div>
+        <div class="panel-heading">
+            <button class="btn btn-success" ng-click="Create();">Create</button>
+        </div>
 
     </div>
 </body>

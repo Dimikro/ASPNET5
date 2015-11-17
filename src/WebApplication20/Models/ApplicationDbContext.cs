@@ -16,15 +16,15 @@ namespace WebApplication20.Models
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);            
 
-            
+
             var b = builder.Entity<SlaveEntity>();
             b.HasKey(t => t.Id);
             b.HasOne(t => t.Master);
             var c = builder.Entity<MasterEntity>();
             c.HasKey(t => t.Id);
-            c.HasMany(t => t.Slaves).WithOne(t=>t.Master).ForeignKey(t=>t.MasterId);
-            c.HasMany(t => t.MasterToRoles).WithOne(t=>t.Master).ForeignKey(t=>t.MasterID);
-            var d = builder.Entity<MasterToRole>();            
+            c.HasMany(t => t.Slaves).WithOne(t => t.Master).ForeignKey(t => t.MasterId);
+            c.HasMany(t => t.MasterToRoles).WithOne(t => t.Master).ForeignKey(t => t.MasterID);
+            var d = builder.Entity<MasterToRole>();
             d.HasKey(t => new { t.IdentityRoleId, t.MasterID });
             d.HasOne(t => t.Role).WithMany();
             var e = builder.Entity<LookUpValue>();
@@ -41,12 +41,14 @@ namespace WebApplication20.Models
             //var r = builder.Entity<IdentityRole>();
             //r.HasMany(typeof(MasterToRole)).WithOne();
         }
+
+        public DbSet<Message> Messages { get; set; }
     }
 
     public class Message
     {
         public int Id { get; set; }
-        public int Text { get; set; }
+        public string Text { get; set; }
         public string Link { get; set; }
         public int StateId { get; set; }
         public virtual State State { get; set; }
@@ -92,7 +94,7 @@ namespace WebApplication20.Models
 
         public virtual MasterEntity Master { get; set; }
     }
-   
+
     public class MasterEntity
     {
         public int Id { get; set; }

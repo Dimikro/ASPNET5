@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using WebApplication20.Models;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,8 +28,21 @@ namespace WebApplication20.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public string Post([FromBody]string value)
         {
+            var random = new Random();
+            var link = new string(Enumerable.Repeat("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 30)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+            using (var context = new ApplicationDbContext())
+            {
+                var msg = new Message();
+                msg.Text = value;
+                msg.Link = link;
+                msg.StateId = 1;
+                context.Messages.Add(msg);
+                context.SaveChanges();
+            }
+            return "http://hh.ru/" + link;
         }
 
         // PUT api/values/5

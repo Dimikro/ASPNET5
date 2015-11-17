@@ -43,6 +43,8 @@ namespace WebApplication20.Models
         }
 
         public DbSet<Message> Messages { get; set; }
+
+        public DbSet<State> States { get; set; }
     }
 
     public class Message
@@ -57,7 +59,7 @@ namespace WebApplication20.Models
     public class State
     {
         public int Id { get; set; }
-        public int Name { get; set; }
+        public string Name { get; set; }
         public virtual ICollection<Message> Messages { get; set; }
     }
 

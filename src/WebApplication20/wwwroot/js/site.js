@@ -1,6 +1,6 @@
-﻿// Write your Javascript code.
-var app = angular.module("mytestmodule");
+﻿//// Write your Javascript code.
+//var app = angular.module("mytestmodule");
 
-app.controller("mytestcontroller", ["$http", function () {
+//app.controller("mytestcontroller", ["$http", function () {
 
-}]);
+//}]);

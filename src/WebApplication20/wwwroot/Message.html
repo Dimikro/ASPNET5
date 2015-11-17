@@ -4,9 +4,16 @@
     <meta charset="utf-8" />
     <title>Title here!!!</title>
     <script src="js/site.min.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/app.js"></script>
     <link type="text/css" rel="stylesheet" href="css/site.min.css" />
 </head>
-<body>
-    body
+<body ng-app="app">
+    <div ng-controller="controller">
+        <textarea>
+            {{test}}
+        </textarea>
+        <input />
+    </div>
 </body>
 </html>

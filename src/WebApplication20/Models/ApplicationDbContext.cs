@@ -32,12 +32,32 @@ namespace WebApplication20.Models
             var f = builder.Entity<LookUp>();
             f.HasKey(t => t.Id);
             f.HasMany(t => t.LookUpValues).WithOne(t => t.LookUp).ForeignKey(t => t.LookUpId);
+            var g = builder.Entity<Message>();
+            g.HasKey(t => t.Id);
+            var h = builder.Entity<State>();
+            h.HasKey(t => t.Id);
+            h.HasMany(t => t.Messages).WithOne(t => t.State).ForeignKey(t => t.StateId);
 
             //var r = builder.Entity<IdentityRole>();
             //r.HasMany(typeof(MasterToRole)).WithOne();
         }
     }
 
+    public class Message
+    {
+        public int Id { get; set; }
+        public int Text { get; set; }
+        public string Link { get; set; }
+        public int StateId { get; set; }
+        public virtual State State { get; set; }
+    }
+
+    public class State
+    {
+        public int Id { get; set; }
+        public int Name { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
+    }
 
     public class LookUp
     {

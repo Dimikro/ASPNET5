@@ -49,6 +49,11 @@ namespace WebApplication20.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
+            using (var context = new ApplicationDbContext())
+            {
+                context.Messages.FirstOrDefault(t => t.Id == id).StateId = 2;
+                context.SaveChanges();
+            }
         }
 
         // DELETE api/values/5

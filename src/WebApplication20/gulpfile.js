@@ -31,14 +31,14 @@ gulp.task("clean", ["clean:js", "clean:css"]);
 gulp.task("min:js", function () {
     gulp.src([paths.js, "!" + paths.minJs], { base: "." })
         .pipe(concat(paths.concatJsDest))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest("."));
 });
 
 gulp.task("min:css", function () {
     gulp.src([paths.css, "!" + paths.minCss])
         .pipe(concat(paths.concatCssDest))
-        .pipe(cssmin())
+        //.pipe(cssmin())
         .pipe(gulp.dest("."));
 });
 

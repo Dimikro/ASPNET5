@@ -12,6 +12,11 @@ namespace WebApplication20.Controllers
     [Route("api/[controller]")]
     public class MessageController : Controller
     {
+        private readonly ApplicationDbContext context;
+        public MessageController(ApplicationDbContext Context)
+        {
+            this.context = Context;
+        }
         // GET: api/values
         [HttpGet]
         public IEnumerable<string> Get()
@@ -33,15 +38,14 @@ namespace WebApplication20.Controllers
             var random = new Random();
             var link = new string(Enumerable.Repeat("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 30)
               .Select(s => s[random.Next(s.Length)]).ToArray());
-            using (var context = new ApplicationDbContext())
-            {
+           
                 var msg = new Message();
                 msg.Text = value;
                 msg.Link = link;
                 msg.StateId = 1;
                 context.Messages.Add(msg);
                 context.SaveChanges();
-            }
+          
             return "http://hh.ru/" + link;
         }
 
@@ -52,7 +56,7 @@ namespace WebApplication20.Controllers
             using (var context = new ApplicationDbContext())
             {
                 context.Messages.FirstOrDefault(t => t.Id == id).StateId = 2;
-                context.SaveChanges();
+                  context.SaveChanges();
             }
         }
 

@@ -1,9 +1,9 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('app', [
+    angular.module('MyApp', [
         // Angular modules 
-        'ngRoute'
+        //'ngRoute'
 
         // Custom modules 
 

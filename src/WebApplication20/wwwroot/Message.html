@@ -4,16 +4,16 @@
     <meta charset="utf-8" />
     <title>Title here!!!</title>
     <script src="js/site.min.js"></script>
-    <script src="js/controller.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/controller.js"></script>
     <link type="text/css" rel="stylesheet" href="css/site.min.css" />
 </head>
-<body ng-app="app">
-    <div ng-controller="controller">
+<body ng-app="MyApp">
+    <div ng-controller="MyController">
         <textarea>
             {{test}}
         </textarea>
-        <input />
+        <button class="btn btn-success" ng-click="Create();">Create</button>
     </div>
 </body>
 </html>

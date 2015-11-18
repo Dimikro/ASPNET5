@@ -33,7 +33,7 @@ namespace WebApplication20.Models
             f.HasKey(t => t.Id);
             f.HasMany(t => t.LookUpValues).WithOne(t => t.LookUp).ForeignKey(t => t.LookUpId);
             var g = builder.Entity<Message>();
-            g.HasKey(t => t.Id);
+            g.HasKey(t => t.Guid);
             var h = builder.Entity<State>();
             h.HasKey(t => t.Id);
             h.HasMany(t => t.Messages).WithOne(t => t.State).ForeignKey(t => t.StateId);
@@ -49,9 +49,8 @@ namespace WebApplication20.Models
 
     public class Message
     {
-        public int Id { get; set; }
+        public string Guid { get; set; }
         public string Text { get; set; }
-        public string Link { get; set; }
         public int StateId { get; set; }
         public virtual State State { get; set; }
     }

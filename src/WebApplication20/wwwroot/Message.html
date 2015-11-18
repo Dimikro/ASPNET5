@@ -10,17 +10,18 @@
 </head>
 <body ng-app="MyApp">
     <div class="row">
-        <div ng-controller="MyController" class="panel panel-info col-sm-5">
-            <div class="panel-body">
-                <textarea class="text-muted form-control">
-                    {{test}}
-                </textarea>
-            </div>
-            <div class="panel-heading">
-                <button class="btn btn-success" ng-click="Create();">Create</button>
-            </div>
-
+    <div ng-controller="MyController" class="panel panel-info col-sm-5">
+        <div class="panel-body">
+            <textarea class="text-muted form-control" ng-model="messagetext">
+            </textarea>
         </div>
+        <div class="panel-heading">
+            <button class="btn btn-success" ng-click="Create();">Create</button>
+        </div>
+        <div class="input-group">
+            <input type="text" value="{{guid}}" />
+        </div>
+    </div>
     </div>
 </body>
 </html>

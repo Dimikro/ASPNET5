@@ -78,9 +78,15 @@ namespace WebApplication20
                 if (env.IsDevelopment())
                 {
                     //Add seed code here
-
-                    context.States.Add(new State { Name = "IsActive" });
-                    context.States.Add(new State { Name = "IsInActive" });
+                    if(!context.States.Any(t=>t.Name == "IsActive"))
+                    {
+                        context.States.Add(new State { Name = "IsActive" });
+                    }
+                    if (!context.States.Any(t => t.Name == "IsInActive"))
+                    {
+                        context.States.Add(new State { Name = "IsInActive" });
+                    }
+                   
 
                     //etc
 

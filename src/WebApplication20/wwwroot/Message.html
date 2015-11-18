@@ -3,22 +3,24 @@
 <head>
     <meta charset="utf-8" />
     <title>Title here!!!</title>
-    <script src="js/site.min.js"></script>
+    <script src="js/vendor.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controller.js"></script>
-    <link type="text/css" rel="stylesheet" href="css/site.min.css" />
+    <link type="text/css" rel="stylesheet" href="css/vendor.min.css" />
 </head>
 <body ng-app="MyApp">
-    <div ng-controller="MyController" class="panel panel-info col-sm-5">
-        <div class="panel-body">
-            <textarea class="text-muted form-control">
-                {{test}}
-            </textarea>
-        </div>
-        <div class="panel-heading">
-            <button class="btn btn-success" ng-click="Create();">Create</button>
-        </div>
+    <div class="row">
+        <div ng-controller="MyController" class="panel panel-info col-sm-5">
+            <div class="panel-body">
+                <textarea class="text-muted form-control">
+                    {{test}}
+                </textarea>
+            </div>
+            <div class="panel-heading">
+                <button class="btn btn-success" ng-click="Create();">Create</button>
+            </div>
 
+        </div>
     </div>
 </body>
 </html>

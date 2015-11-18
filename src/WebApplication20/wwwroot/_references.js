@@ -3,6 +3,7 @@
 /// <reference path="js/app.js" />
 /// <reference path="js/controller.js" />
 /// <reference path="js/site.js" />
+/// <reference path="js/vendor.min.js" />
 /// <reference path="lib/angular/angular.js" />
 /// <reference path="lib/angular-bootstrap/ui-bootstrap-tpls.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />

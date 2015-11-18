@@ -37,6 +37,12 @@ namespace WebApplication20.Models
             var h = builder.Entity<State>();
             h.HasKey(t => t.Id);
             h.HasMany(t => t.Messages).WithOne(t => t.State).ForeignKey(t => t.StateId);
+            var i = builder.Entity<Page>();
+            i.HasKey(t => t.Id);
+            i.HasMany(t => t.PageToRoles).WithOne(t => t.Page).ForeignKey(t => t.PageId);
+            var j = builder.Entity<PageToRole>();
+            j.HasKey(t => new { t.IdentityRoleId, t.PageId });
+            j.HasOne(t => t.Role).WithMany();
 
             //var r = builder.Entity<IdentityRole>();
             //r.HasMany(typeof(MasterToRole)).WithOne();
@@ -47,6 +53,22 @@ namespace WebApplication20.Models
         public DbSet<State> States { get; set; }
     }
 
+    public class Page
+    {
+        public int Id { get; set; }
+        public int Name { get; set; }
+        public string Url { get; set; }
+        public virtual ICollection<PageToRole> PageToRoles { get; set; }
+    }
+
+    public class PageToRole
+    {
+        public int PageId { get; set; }
+        public virtual Page Page { get; set; }
+        public int IdentityRoleId { get; set; }
+        public virtual IdentityRole Role { get; set; }
+
+    }
     public class Message
     {
         public string Guid { get; set; }

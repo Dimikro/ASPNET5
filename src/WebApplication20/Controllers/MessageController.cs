@@ -27,10 +27,12 @@ namespace WebApplication20.Controllers
 
         // GET api/values/5
         [HttpGet("{guid}")]
-        public void Get(string guid)
+        public IActionResult Get(string guid)
         {
-            //return context.Messages.First(t => t.Link == link).Text;
-            //return Redirect("~/HiddenMessage.html/" + guid);
+            if (context.Messages.Any(t => t.Guid == guid && t.StateId == 1))
+                return Redirect("http://localhost:43815/HiddenMessage.html?guid=" + guid);
+            else
+                return Redirect("http://localhost:43815/Message.html");
         }
 
         // POST api/values
@@ -49,7 +51,7 @@ namespace WebApplication20.Controllers
                 context.Messages.Add(msg);
                 context.SaveChanges();
           
-            return "http://localhost:43815/HiddenMessage/" + guid;
+            return "http://localhost:43815/Message/" + guid;
         }
 
         // PUT api/values/5

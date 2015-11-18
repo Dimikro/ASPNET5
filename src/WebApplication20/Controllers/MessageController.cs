@@ -27,10 +27,10 @@ namespace WebApplication20.Controllers
 
         // GET api/values/5
         [HttpGet("{guid}")]
-        public IActionResult Get(string guid)
+        public void Get(string guid)
         {
             //return context.Messages.First(t => t.Link == link).Text;
-            return Redirect("~/Message/Hidden");
+            //return Redirect("~/HiddenMessage.html/" + guid);
         }
 
         // POST api/values
@@ -45,10 +45,11 @@ namespace WebApplication20.Controllers
                 msg.Text = value;
                 msg.Guid = guid;
                 msg.StateId = 1;
+                msg.CreateDate = DateTime.Now;
                 context.Messages.Add(msg);
                 context.SaveChanges();
           
-            return "http://hh.ru/" + guid;
+            return "http://localhost:43815/HiddenMessage/" + guid;
         }
 
         // PUT api/values/5

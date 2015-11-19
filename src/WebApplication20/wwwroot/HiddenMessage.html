@@ -3,14 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <script type="text/javascript" src="js/vendor.min.js"></script>
     <link type="text/css" rel="stylesheet" href="css/vendor.min.css" />
+    <script type="text/javascript" src="js/hiddenApp.js"></script>
 </head>
-<body>
+<body ng-app="hiddenApp" ng-controller="hiddenController">
     <div class="header">Note is exist!</div>
-    <div class="body-content">
-        <div class="panel panel-heading col-sm-5">
+    <div class="row">
+        <div class="panel col-sm-5">
             <div class="panel-body col-md-2">
-                <button class="btn btn-success">Read the note</button>
+                <button class="btn btn-success" ng-click="LoadNote()">Read the note</button>
             </div>
             <div class="panel-body col-md-2">
                 <button class="btn btn-danger">Cancel</button>

@@ -6,11 +6,16 @@
     <script type="text/javascript" src="js/vendor.min.js"></script>
     <link type="text/css" rel="stylesheet" href="css/vendor.min.css" />
     <script type="text/javascript" src="js/hiddenApp.js"></script>
+    <script src="js/hiddencontroller.js"></script>
 </head>
 <body ng-app="hiddenApp" ng-controller="hiddenController">
-    <div class="header">Note is exist!</div>
+    <header>Note is exist!</header>
     <div class="row">
         <div class="panel col-sm-5">
+            <div class="panel-body">
+                <!--<textarea class="text-muted form-control" ng-model="messagetext"></textarea>-->
+                <input type="text" value="{{messagetext}}" />
+            </div>
             <div class="panel-body col-md-2">
                 <button class="btn btn-success" ng-click="LoadNote()">Read the note</button>
             </div>
@@ -19,6 +24,6 @@
             </div>
         </div>
     </div>
-    <div class="footer"></div>
+    <footer></footer>
 </body>
 </html>

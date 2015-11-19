@@ -25,6 +25,22 @@ namespace WebApplication20.Controllers
             return new string[] { "value1", "value2" };
         }
 
+        [HttpPost]
+        [Route("ReadNote/{guid}")]
+        public string ReadNote(string guid)
+        {
+            var msg = context.Messages.First(t => t.Guid == guid && t.StateId == 1);
+            var txt = "The note is absent";
+            if (msg != null)
+            {
+                msg.StateId = 2;
+                context.SaveChanges();
+                txt = msg.Text;
+            }
+            return txt;
+
+        }
+
         // GET api/values/5
         [HttpGet("{guid}")]
         public IActionResult Get(string guid)

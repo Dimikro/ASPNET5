@@ -1,9 +1,10 @@
 ﻿(function () {
     'use strict';
 
-    angular
-        .module('MyApp')
-        .controller('MyController', controller);
+    var MyApp = angular
+        .module('MyApp');
+
+    MyApp.controller('MyController', controller);
 
     controller.$inject = ['$location', '$scope', '$http'];
     
@@ -13,6 +14,8 @@
         vm.title = 'MyController';
         $scope.messagetext = 'Enter your secret message here';
         $scope.guid = '';
+        $scope.password = '';
+        $scope.confirmPassword = '';
         $scope.Create = function () {
             $http.post('Message', '"' + $scope.messagetext + '"').then(
                 function (result) {
@@ -25,4 +28,26 @@
 
         function activate() { }
     }
+
+    var compareTo = function () {
+        return {
+            require: "ngModel",
+            scope: {
+                otherModelValue: "=compareTo"
+            },
+            link: function (scope, element, attributes, ngModel) {
+
+                ngModel.$validators.compareTo = function (modelValue) {
+                    return modelValue == scope.otherModelValue;
+                };
+
+                scope.$watch("otherModelValue", function () {
+                    ngModel.$validate();
+                });
+            }
+        };
+    };
+
+    MyApp.directive("compareTo", compareTo);
+
 })();

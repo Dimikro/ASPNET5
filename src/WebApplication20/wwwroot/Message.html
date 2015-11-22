@@ -10,18 +10,27 @@
 </head>
 <body ng-app="MyApp">
     <div class="row">
-    <div ng-controller="MyController" class="panel panel-info col-sm-5">
-        <div class="panel-body">
-            <textarea class="text-muted form-control" ng-model="messagetext">
-            </textarea>
+        <div ng-controller="MyController" class="panel panel-info col-md-4">
+            <div class="panel-body">
+                <textarea class="text-muted form-control" ng-model="messagetext"></textarea>
+            </div>
+            <div class="panel-heading">
+                <button class="btn btn-success" ng-click="Create();">Create</button>
+            </div>
+            <div class="input-group panel-body">
+                <input type="text" value="{{guid}}" />
+            </div>
         </div>
-        <div class="panel-heading">
-            <button class="btn btn-success" ng-click="Create();">Create</button>
+        <div class="panel panel-info col-md-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel-body">
+                        <textarea class="text-muted form-control">Enter password</textarea>
+                        <textarea class="text-muted form-control">Confirm password</textarea>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="input-group">
-            <input type="text" value="{{guid}}" />
-        </div>
-    </div>
     </div>
 </body>
 </html>

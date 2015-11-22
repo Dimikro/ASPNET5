@@ -9,6 +9,7 @@
 /// <reference path="lib/angular/angular.js" />
 /// <reference path="lib/angular-bootstrap/ui-bootstrap-tpls.js" />
 /// <reference path="lib/angular-messages/angular-messages.js" />
+/// <reference path="lib/angular-ui-router/release/angular-ui-router.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="lib/bootstrap-touch-carousel/dist/js/bootstrap-touch-carousel.js" />
 /// <reference path="lib/hammer.js/hammer.js" />

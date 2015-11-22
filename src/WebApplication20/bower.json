@@ -10,6 +10,7 @@
     "hammer.js": "2.0.4",
     "angular": "1.4.8",
     "angular-bootstrap": "0.14.3",
-    "angular-messages": "*"
+    "angular-messages": "*",
+    "angular-ui-router": "0.2.15"
   }
 }

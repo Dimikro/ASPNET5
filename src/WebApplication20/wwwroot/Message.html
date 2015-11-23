@@ -13,13 +13,13 @@
         <form name="gForm">
             <div class="panel panel-info col-md-4">
                 <div class="panel-body">
-                    <textarea class="text-muted form-control" ng-model="messagetext"></textarea>
+                    <textarea class="text-muted form-control" ng-model="message.Text"></textarea>
                 </div>
                 <div class="panel-heading">
                     <button class="btn btn-success" ng-click="Create();">Create</button>
                 </div>
                 <div class="input-group panel-body">
-                    <input type="text" value="{{guid}}" />
+                    <input type="text" value="{{message.Guid}}" />
                 </div>
             </div>
             <div class="panel panel-info col-md-4">
@@ -29,7 +29,7 @@
                             <div class="form-group">
                                 <label>Password</label>
                                 <input type="password" name="password" class="form-control"
-                                       ng-model="password" required />
+                                       ng-model="message.Password" required />
                                 <div ng-messages="gForm.password.$error">
                                     <div ng-messages-include="MessagesForm.html"></div>
                                 </div>
@@ -45,12 +45,12 @@
                             </div>
                             <div class="form-group">
                                 <label>Delete after:</label>
-                                <select class="form-control">
-                                    <option value="afterread">Read</option>
-                                    <option value="1hour">1 hour</option>
-                                    <option value="24hours">24 hours</option>
-                                    <option value="1week">1 week</option>
-                                    <option value="1month">1 month</option>
+                                <select class="form-control" ng-model="message.HoursToDelete">
+                                    <option value="0">Read</option>
+                                    <option value="1">1 hour</option>
+                                    <option value="24">24 hours</option>
+                                    <option value="168">1 week</option>
+                                    <option value="720">1 month</option>
                                 </select>
                             </div>
                         </div>

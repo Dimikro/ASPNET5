@@ -13,13 +13,18 @@
         var vm = this;
         vm.title = 'MyController';
         $scope.messagetext = 'Enter your secret message here';
-        $scope.guid = '';
-        $scope.password = '';
-        $scope.confirmPassword = '';
+
+        $scope.message={
+            Guid: undefined,
+            Password: undefined,
+            Text: undefined,
+            HoursToDelete: undefined
+        }
+
         $scope.Create = function () {
-            $http.post('Message', '"' + $scope.messagetext + '"').then(
+            $http.post('Message', $scope.message).then(
                 function (result) {
-                    $scope.guid = result.data;
+                    $scope.message.Guid = result.data;
                 },
             function (result) {
             });

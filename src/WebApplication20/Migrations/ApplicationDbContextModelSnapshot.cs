@@ -186,7 +186,8 @@ namespace WebApplication20.Migrations
 
             modelBuilder.Entity("WebApplication20.Models.Message", b =>
                 {
-                    b.Property<string>("Guid");
+                    b.Property<Guid>("Guid")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreateDate");
 

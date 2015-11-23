@@ -8,8 +8,8 @@ using WebApplication20.Models;
 namespace WebApplication20.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20151122145133_m12")]
-    partial class m12
+    [Migration("20151123130548_m1")]
+    partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -187,7 +187,8 @@ namespace WebApplication20.Migrations
 
             modelBuilder.Entity("WebApplication20.Models.Message", b =>
                 {
-                    b.Property<string>("Guid");
+                    b.Property<Guid>("Guid")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreateDate");
 

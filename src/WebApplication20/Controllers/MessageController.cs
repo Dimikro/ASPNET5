@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using WebApplication20.Models;
+using WebApplication20.ViewModels.Message;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,7 +28,7 @@ namespace WebApplication20.Controllers
 
         [HttpPost]
         [Route("ReadNote/{guid}")]
-        public string ReadNote(string guid)
+        public string ReadNote(Guid guid)
         {
             var msg = context.Messages.First(t => t.Guid == guid && t.StateId == 1);
             var txt = "The note is absent";
@@ -43,7 +44,7 @@ namespace WebApplication20.Controllers
 
         // GET api/values/5
         [HttpGet("{guid}")]
-        public IActionResult Get(string guid)
+        public IActionResult Get(Guid guid)
         {
             if (context.Messages.Any(t => t.Guid == guid && t.StateId == 1))
                 return Redirect("http://localhost:43815/HiddenMessage.html?guid=" + guid);
@@ -53,16 +54,17 @@ namespace WebApplication20.Controllers
 
         // POST api/values
         [HttpPost]
-        public string Post([FromBody]string value)
+        public string Post([FromBody]MessageViewModel message)
         {
             var random = new Random();
-            var guid = new string(Enumerable.Repeat("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 30)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
+            var guid = new Guid();
            
                 var msg = new Message();
-                msg.Text = value;
+                msg.Text = message.Text;
                 msg.Guid = guid;
                 msg.StateId = 1;
+                msg.Password = message.Password;
+                msg.HoursToDelete = message.HoursToDelete;
                 msg.CreateDate = DateTime.Now;
                 context.Messages.Add(msg);
                 context.SaveChanges();
@@ -72,7 +74,7 @@ namespace WebApplication20.Controllers
 
         // PUT api/values/5
         [HttpPut("{guid}")]
-        public void Put(string guid, [FromBody]string value)
+        public void Put(Guid guid, [FromBody]string value)
         {
             using (var context = new ApplicationDbContext())
             {

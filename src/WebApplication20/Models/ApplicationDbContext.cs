@@ -71,7 +71,7 @@ namespace WebApplication20.Models
     }
     public class Message
     {
-        public string Guid { get; set; }
+        public Guid Guid { get; set; }
         public string Text { get; set; }
         public DateTime CreateDate { get; set; }
         public int? HoursToDelete { get; set; }

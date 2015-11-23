@@ -9,9 +9,13 @@
 
     function hiddenController($location, $scope, $http) {
         $scope.title = 'hiddenController';
-        $scope.messagetext = '';
+        $scope.HiddenMessage = {
+            Guid: $location.absUrl().split('guid=')[1],
+            Password: undefined
+        }
+        $scope.messagetext = "";
         $scope.LoadNote = function () {
-            $http.post('Message/ReadNote/' + $location.absUrl().split('guid=')[1]).then(
+            $http.post('Message/ReadNote/' + $scope.HiddenMessage).then(
                 function (result) {
                     $scope.messagetext = result.data;
                 },

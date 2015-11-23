@@ -13,11 +13,23 @@ namespace WebApplication20.Controllers
             return View();
         }
 
+        public IActionResult IndexPartial()
+        {
+            return PartialView();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
 
             return View();
+        }
+
+        public IActionResult AboutPartial()
+        {
+            ViewData["Message"] = "Your application description page.";
+
+            return PartialView();
         }
 
         public IActionResult Contact()

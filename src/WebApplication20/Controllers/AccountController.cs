@@ -95,6 +95,15 @@ namespace WebApplication20.Controllers
         }
 
         //
+        // GET: /Account/Register
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RegisterPartial()
+        {
+            return PartialView();
+        }
+
+        //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]

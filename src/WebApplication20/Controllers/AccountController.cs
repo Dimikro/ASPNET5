@@ -49,6 +49,16 @@ namespace WebApplication20.Controllers
         }
 
         //
+        // GET: /Account/Login
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult LoginPartial(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return PartialView();
+        }
+
+        //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -92,6 +102,15 @@ namespace WebApplication20.Controllers
         public IActionResult Register()
         {
             return View();
+        }
+
+        //
+        // GET: /Account/Register
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RegisterPartial()
+        {
+            return PartialView();
         }
 
         //

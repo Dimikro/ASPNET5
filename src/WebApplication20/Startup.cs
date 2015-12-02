@@ -72,6 +72,31 @@ namespace WebApplication20
         // Configure is called after ConfigureServices is called.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+
+            using (var context = (ApplicationDbContext)app.ApplicationServices.GetService<ApplicationDbContext>())
+            {
+                if (env.IsDevelopment())
+                {
+                    //Add seed code here
+                    if(!context.States.Any(t=>t.Name == "IsActive"))
+                    {
+                        context.States.Add(new State { Name = "IsActive" });
+                    }
+                    if (!context.States.Any(t => t.Name == "IsInActive"))
+                    {
+                        context.States.Add(new State { Name = "IsInActive" });
+                    }
+                   
+
+                    //etc
+
+                    context.SaveChanges();
+                }
+            }
+
+
+
+
             loggerFactory.MinimumLevel = LogLevel.Information;
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();

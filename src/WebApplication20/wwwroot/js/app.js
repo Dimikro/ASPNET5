@@ -37,7 +37,7 @@
             })
 
             //
-            .state('contacts', {
+            .state('account.register', {
                 url: '/Account/Register',
                 templateUrl: 'RegisterPartial'
             })

@@ -35,7 +35,7 @@ namespace WebApplication20.Controllers
         {
             var msg = context.Messages.First(t => t.Guid == hiddenMessage.Guid && t.StateId == 1 
             && 
-            (String.IsNullOrEmpty(t.Password) || t.Password == HashString(hiddenMessage.Password)));
+            (String.IsNullOrEmpty(t.PasswordHash) || t.PasswordHash == HashString(hiddenMessage.PasswordHash)));
             var txt = "The note is absent";
             if (msg != null)
             {
@@ -87,7 +87,7 @@ namespace WebApplication20.Controllers
             msg.Text = message.Text;
             msg.Guid = guid;
             msg.StateId = 1;
-            msg.Password = hash;
+            msg.PasswordHash = hash;
             msg.HoursToDelete = message.HoursToDelete;
             msg.CreateDate = DateTime.Now;
             context.Messages.Add(msg);

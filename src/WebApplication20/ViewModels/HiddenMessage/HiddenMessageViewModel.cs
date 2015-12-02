@@ -8,6 +8,6 @@ namespace WebApplication20.ViewModels.HiddenMessage
     public class HiddenMessageViewModel
     {
         public Guid Guid { get; set; }
-        public string Password { get; set; }
+        public string PasswordHash { get; set; }
     }
 }

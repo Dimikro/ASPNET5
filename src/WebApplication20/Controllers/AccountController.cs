@@ -49,6 +49,16 @@ namespace WebApplication20.Controllers
         }
 
         //
+        // GET: /Account/Login
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult LoginPartial(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return PartialView();
+        }
+
+        //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]

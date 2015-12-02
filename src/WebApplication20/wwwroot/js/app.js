@@ -37,9 +37,15 @@
             })
 
             //
-            .state('contacts', {
+            .state('register', {
                 url: '/Account/Register',
                 templateUrl: 'RegisterPartial'
+            })
+
+            //
+            .state('login', {
+                url: '/Account/Login',
+                templateUrl: 'LoginPartial'
             })
             ;
     });

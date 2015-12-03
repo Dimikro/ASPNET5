@@ -38,6 +38,16 @@ namespace WebApplication20.Controllers
             _applicationDbContext = applicationDbContext;
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public bool CheckUserName(string userName)
+        {
+            var user = _userManager.FindByNameAsync(userName);
+            return (user == null) ? true : false;
+        }
+
+
+
         //
         // GET: /Account/Login
         [HttpGet]

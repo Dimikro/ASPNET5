@@ -1,4 +1,4 @@
-﻿<form name="gForm" class="form-horizontal" novalidate>
+﻿<form name="gForm" novalidate>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -6,6 +6,10 @@
                     <div class="panel-heading">
                         <button class="btn btn-success" ng-click="NoteCtrl.Create();">Create</button>
                         <button class="btn btn-success" ng-click="NoteCtrl.toggleDetails();">Details</button>
+                        <a class="btn btn-success" ng-click="NoteCtrl.toggleDetails();">
+                            <span class="glyphicon pull-right" ng-class="{'glyphicon-chevron-right': !NoteCtrl.showDetails, 'glyphicon-chevron-left': NoteCtrl.showDetails}"></span>
+                            More
+                        </a>
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
@@ -21,7 +25,6 @@
             </div>
             <div class="col-md-6" ng-show="NoteCtrl.showDetails">
                 <div class="panel panel-info">
-                    <div class="panel-heading"></div>
                     <div class="panel-body">
                         <div class="form-group">
                             <label>Password</label>

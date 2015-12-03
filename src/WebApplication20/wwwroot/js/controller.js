@@ -12,9 +12,10 @@
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'NoteController';
-        $scope.confirmPassword = null;
+        vm.confirmPassword = null;
+        vm.showDetails = false;
 
-        $scope.message = {
+        vm.message = {
             Guid: undefined,
             Password: undefined,
             Text: undefined,
@@ -22,11 +23,18 @@
             Url: undefined
         }
 
-        $scope.Create = function () {
-            $http.post('Message', $scope.message).then(
+        vm.toggleDetails = function () {
+            if (vm.showDetails)
+                vm.showDetails = false;
+            else
+                vm.showDetails = true;
+        }
+
+        vm.Create = function () {
+            $http.post('Message', vm.message).then(
                 function (result) {
-                    $scope.message.Guid = result.data;
-                    $scope.message.Url = 'http://localhost:43815/Message/' + $scope.message.Guid;
+                    vm.message.Guid = result.data;
+                    vm.message.Url = 'http://localhost:43815/Message/' + vm.message.Guid;
                 },
             function (result) {
             });
@@ -68,6 +76,8 @@
 
         function activate() { }
     }
+
+
 
     var compareTo = function () {
         return {

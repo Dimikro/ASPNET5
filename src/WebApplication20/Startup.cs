@@ -73,9 +73,9 @@ namespace WebApplication20
         // Configure is called after ConfigureServices is called.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            var user = new ApplicationUser { UserName = "admin", Email = "admin@admin.com" };
-            UserManager<ApplicationUser> _userManager = app.ApplicationServices.GetService<UserManager<ApplicationUser>>();
-            var result = _userManager.CreateAsync(user, "TestP@ssword1");
+            //var user = new ApplicationUser { UserName = "admin", Email = "admin@admin.com" };
+            //UserManager<ApplicationUser> _userManager = app.ApplicationServices.GetService<UserManager<ApplicationUser>>();
+            //var result = _userManager.CreateAsync(user, "TestP@ssword1");
 
             using (var context = (ApplicationDbContext)app.ApplicationServices.GetService<ApplicationDbContext>())
             {

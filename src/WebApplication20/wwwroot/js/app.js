@@ -70,6 +70,14 @@
                 controller: 'AccountController',
                 controllerAs: 'Acc'
             })
+
+            //
+            .state('message', {
+                url: '/Message',
+                templateUrl: 'Message.html',
+                controller: 'NoteController',
+                controllerAs: 'NoteCtrl'
+            })
         ;
     });
 })();

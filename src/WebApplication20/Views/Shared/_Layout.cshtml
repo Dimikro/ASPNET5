@@ -2,8 +2,9 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <base href="http://localhost:43815/" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@ViewData["Title"] - WebApplication20</title>
+        <title>@ViewData["Title"] - WebApplication20</title>        
 
         <environment names="Development">
             <link rel="stylesheet" href="~/css/vendor.min.css" />
@@ -21,7 +22,7 @@
             <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
         </environment>
     </head>
-    <body ng-app="MyApp">
+    <body ng-app="AspNetApp">
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -33,11 +34,10 @@
                     <a asp-controller="Home" asp-action="Index" class="navbar-brand">WebApplication20</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a ui-sref='home'>UnHome</a></li>
-                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-controller="Home" asp-action="About">About</a></li>
-                        <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <ul class="nav navbar-nav">                        
+                        <li><a ui-sref="home.index">Home</a></li>
+                        <li><a ui-sref='home.about'>About</a></li>
+                        <li><a ui-sref='home.contact'>Contact</a></li>
                     </ul>
                     @await Html.PartialAsync("_LoginPartial")
                 </div>

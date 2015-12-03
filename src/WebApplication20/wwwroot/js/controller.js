@@ -1,20 +1,20 @@
 ﻿(function () {
     'use strict';
 
-    var MyApp = angular
-        .module('MyApp');
+    var app = angular
+        .module('AspNetApp');
 
-    MyApp.controller('MyController', controller);
+    app.controller('NoteController', noteController);
 
-    controller.$inject = ['$location', '$scope', '$http'];
-    
-    function controller($location, $scope, $http) {
+    noteController.$inject = ['$location', '$scope', '$http'];
+
+    function noteController($location, $scope, $http) {
         /* jshint validthis:true */
         var vm = this;
-        vm.title = 'MyController';
+        vm.title = 'NoteController';
         $scope.confirmPassword = null;
 
-        $scope.message={
+        $scope.message = {
             Guid: undefined,
             Password: undefined,
             Text: undefined,
@@ -31,6 +31,39 @@
             function (result) {
             });
         };
+        activate();
+
+        function activate() { }
+    }
+
+    app.controller('AccountController', accountController);
+
+    accountController.$inject = ['$location', '$scope', '$http'];
+
+    function accountController($location, $scope, $http) {
+        /* jshint validthis:true */
+        var vm = this;
+        vm.title = 'AccountController';
+
+        vm.user = {
+            Email: null,
+            Password: null,
+            RememberMe: false
+        }
+
+        vm.signIn = function (form) {
+            vm.user.__RequestVerificationToken = form.__RequestVerificationToken;
+            $http.post('/Account/LoginAJAX', vm.user)
+                .then(
+                    function (result) {
+                        alert("Success");
+                    },
+                    function (result) {
+                        alert(result.data);
+                    }
+                );
+        };
+
         activate();
 
         function activate() { }
@@ -55,6 +88,8 @@
         };
     };
 
-    MyApp.directive("compareTo", compareTo);
+    app.directive("compareTo", compareTo);
+
+
 
 })();

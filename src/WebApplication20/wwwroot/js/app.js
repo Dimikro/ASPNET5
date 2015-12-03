@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    var MyApp = angular.module('MyApp', [
+    var app = angular.module('AspNetApp', [
 
         // Angular modules 
         //'ngRoute'
@@ -13,11 +13,11 @@
         "ui.router"
     ]);
 
-    MyApp.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
         $locationProvider.html5Mode({
-            enabled: true,
-            requireBase: false
+            enabled: true//,
+            //requireBase: false
         });
 
         $urlRouterProvider.otherwise('/Home');
@@ -27,26 +27,49 @@
             // HOME STATES AND NESTED VIEWS ========================================
             .state('home', {
                 url: '/Home',
+                
+                template: "<div ui-view></div>"
+            })
+
+            .state('home.index', {
+                url: '/',
                 templateUrl: 'Home/IndexPartial'
             })
 
             // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
-            .state('about', {
-                url: '/Home/About',
-                templateUrl: 'AboutPartial'
+            .state('home.about', {
+                url: '/About',
+                templateUrl: 'Home/AboutPartial'
+            })
+
+            // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
+            .state('home.contact', {
+                url: '/Contact',
+                templateUrl: 'Home/ContactPartial'
             })
 
             //
-            .state('register', {
-                url: '/Account/Register',
-                templateUrl: 'RegisterPartial'
+            .state('account',{
+                url: '/Account',
+                abstract: true,
+                template: "<div ui-view></div>"
             })
 
             //
-            .state('login', {
-                url: '/Account/Login',
-                templateUrl: 'LoginPartial'
+            .state('account.register', {
+                url: '/Register',
+                templateUrl: 'Account/RegisterPartial',
+                controller: 'AccountController',
+                controllerAs: 'Acc'
             })
-            ;
+
+            //
+            .state('account.login', {
+                url: '/Login',
+                templateUrl: 'Account/LoginPartial',
+                controller: 'AccountController',
+                controllerAs: 'Acc'
+            })
+        ;
     });
 })();

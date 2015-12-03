@@ -17,6 +17,7 @@ using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
 using WebApplication20.Models;
 using WebApplication20.Services;
+using Microsoft.AspNet.Identity;
 
 namespace WebApplication20
 {
@@ -72,6 +73,9 @@ namespace WebApplication20
         // Configure is called after ConfigureServices is called.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            var user = new ApplicationUser { UserName = "admin", Email = "admin@admin.com" };
+            UserManager<ApplicationUser> _userManager = app.ApplicationServices.GetService<UserManager<ApplicationUser>>();
+            var result = _userManager.CreateAsync(user, "TestP@ssword1");
 
             using (var context = (ApplicationDbContext)app.ApplicationServices.GetService<ApplicationDbContext>())
             {
@@ -85,17 +89,13 @@ namespace WebApplication20
                     if (!context.States.Any(t => t.Name == "IsInActive"))
                     {
                         context.States.Add(new State { Name = "IsInActive" });
-                    }
-                   
+                    }                    
 
                     //etc
 
                     context.SaveChanges();
                 }
             }
-
-
-
 
             loggerFactory.MinimumLevel = LogLevel.Information;
             loggerFactory.AddConsole();

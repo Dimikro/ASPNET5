@@ -39,6 +39,13 @@ namespace WebApplication20.Controllers
             return View();
         }
 
+        public IActionResult ContactPartial()
+        {
+            ViewData["Message"] = "Your contact page.";
+
+            return PartialView();
+        }
+
         public IActionResult Error()
         {
             return View("~/Views/Shared/Error.cshtml");

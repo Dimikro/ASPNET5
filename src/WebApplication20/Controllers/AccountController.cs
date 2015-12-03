@@ -95,6 +95,38 @@ namespace WebApplication20.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LoginAJAX(LoginViewModel model)
+        {
+            EnsureDatabaseCreated(_applicationDbContext);
+            if (ModelState.IsValid)
+            {
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    return Ok();
+                }
+                if (result.RequiresTwoFactor)
+                {
+                    return Ok("Requires two factor");
+                }
+                if (result.IsLockedOut)
+                {
+                    return HttpBadRequest("User is locked out.");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return HttpBadRequest(model);
+                }
+            }
+            else
+                return HttpBadRequest(model);            
+        }
         //
         // GET: /Account/Register
         [HttpGet]

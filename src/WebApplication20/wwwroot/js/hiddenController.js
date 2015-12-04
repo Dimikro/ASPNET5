@@ -11,7 +11,7 @@
         $scope.title = 'hiddenController';
         $scope.HiddenMessage = {
             Guid: $location.absUrl().split('guid=')[1],
-            Password: undefined
+            PasswordHash: undefined
         }
         $scope.messagetext = "";
         $scope.LoadNote = function () {

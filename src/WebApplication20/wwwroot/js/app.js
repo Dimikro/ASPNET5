@@ -78,6 +78,6 @@
                 controller: 'NoteController',
                 controllerAs: 'NoteCtrl'
             })
-        ;
+            ;
     });
 })();

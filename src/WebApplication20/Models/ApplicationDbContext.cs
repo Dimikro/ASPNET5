@@ -75,7 +75,7 @@ namespace WebApplication20.Models
         public string Text { get; set; }
         public DateTime CreateDate { get; set; }
         public int? HoursToDelete { get; set; }
-        public string Password { get; set; }
+        public string PasswordHash { get; set; }
         public int StateId { get; set; }
         public virtual State State { get; set; }
     }

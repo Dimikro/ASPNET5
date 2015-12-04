@@ -17,7 +17,7 @@
 
         vm.message = {
             Guid: undefined,
-            Password: undefined,
+            PasswordHash: undefined,
             Text: undefined,
             HoursToDelete: '0',
             Url: undefined

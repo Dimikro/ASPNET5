@@ -134,11 +134,11 @@ namespace WebApplication20
             //    options.AppId = Configuration["Authentication:Facebook:AppId"];
             //    options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             //});
-            //app.UseGoogleAuthentication(options =>
-            //{
-            //    options.ClientId = Configuration["Authentication:Google:ClientId"];
-            //    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-            //});
+            app.UseGoogleAuthentication(options =>
+            {
+                options.ClientId = Configuration["Authentication:Google:ClientId"];
+                options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            });
             //app.UseMicrosoftAccountAuthentication(options =>
             //{
             //    options.ClientId = Configuration["Authentication:MicrosoftAccount:ClientId"];

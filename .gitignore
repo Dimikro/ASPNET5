@@ -214,3 +214,4 @@ src/WebApplication20/wwwroot/js/vendor.min.js
 src/WebApplication20/wwwroot/css/vendor.min.css
 
 src/WebApplication20/wwwroot/lib/
+src/WebApplication20/wwwroot/_references.js

@@ -14,7 +14,7 @@
         vm.title = 'NoteController';
         vm.confirmPassword = null;
         vm.showDetails = false;
-
+        
         vm.message = {
             Guid: undefined,
             PasswordHash: undefined,
@@ -46,9 +46,9 @@
 
     app.controller('AccountController', accountController);
 
-    accountController.$inject = ['$location', '$scope', '$http'];
+    accountController.$inject = ['$location', '$scope', '$http', '$auth'];
 
-    function accountController($location, $scope, $http) {
+    function accountController($location, $scope, $http, $auth) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'AccountController';
@@ -70,6 +70,10 @@
                         alert(result.data);
                     }
                 );
+        };
+
+        vm.authenticate = function (provider) {
+            $auth.authenticate(provider);
         };
 
         activate();

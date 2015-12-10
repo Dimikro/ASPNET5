@@ -10,10 +10,11 @@
 
         // 3rd Party Modules
         "ngMessages",
-        "ui.router"
+        "ui.router",
+        "satellizer"
     ]);
 
-    app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $authProvider) {
 
         $locationProvider.html5Mode({
             enabled: true//,
@@ -27,7 +28,7 @@
             // HOME STATES AND NESTED VIEWS ========================================
             .state('home', {
                 url: '/Home',
-                
+
                 template: "<div ui-view></div>"
             })
 
@@ -49,7 +50,7 @@
             })
 
             //
-            .state('account',{
+            .state('account', {
                 url: '/Account',
                 abstract: true,
                 template: "<div ui-view></div>"
@@ -78,6 +79,10 @@
                 controller: 'NoteController',
                 controllerAs: 'NoteCtrl'
             })
-            ;
+        ;
+
+        $authProvider.google({
+            clientId: '486488283018-16fb4tf6vb5vfte4tbe9m4hr25i2fau3.apps.googleusercontent.com'
+        });
     });
 })();
